@@ -357,7 +357,7 @@
       frase.addEventListener("input", render);
       verTodo.addEventListener("click", () => { frase.value = ""; render(); });
       document.getElementById("busqueda").addEventListener("submit", (e) => e.preventDefault());
-      fetch(new URL("catalogo.json?v=20261017-1", here), { cache: "no-store" })
+      fetch(new URL("catalogo.json?v=20261017-2", here), { cache: "no-store" })
         .then((res) => { if (!res.ok) throw new Error("catalogo"); return res.json(); })
         .then((data) => { archivo = data.map((foto) => ({ ...foto, origin: "archivo" })); render(); })
         .catch(() => { cuenta.textContent = "No se pudo abrir el catálogo."; });
