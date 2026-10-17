@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Banco Bien</title>
-    <meta name="description" content="Banco de fotos etiquetadas. Busca una frase y aparece la imagen." />
+    <title>Banco de Dragon Ball</title>
+    <meta name="description" content="Banco de Dragon Ball. Busca una frase y aparece la imagen." />
     <meta name="theme-color" content="#f3efe7" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -118,8 +118,8 @@
   </head>
   <body>
     <main class="wrap">
-      <p class="kicker">Bien · archivo</p>
-      <h1>Banco de fotos</h1>
+      <p class="kicker">Dragon Ball · archivo</p>
+      <h1>Banco de Dragon Ball</h1>
       <p class="lede">Cada imagen ya tiene su frase. Escríbela y aparece la foto, con la ficha que la acompaña.</p>
       <form class="search" id="busqueda" role="search">
         <label class="sr" for="frase" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Buscar por frase</label>
@@ -157,17 +157,10 @@
     </dialog>
     <script>
       const SUGERENCIAS = [
+        "beerus",
+        "dragon ball",
+        "dios de la destrucción",
         "gato morado con ojos amarillos",
-        "atardecer en la playa",
-        "café de la mañana",
-        "bosque después de la lluvia",
-        "ciudad de noche",
-        "montaña al amanecer",
-        "mercado de frutas",
-        "libro junto a la ventana",
-        "desierto al atardecer",
-        "flores de primavera",
-        "pan recién horneado",
       ];
       const STOP = new Set(["de","la","el","en","al","del","los","las","un","una","y","con","por","para","que","su","sus","lo","a"]);
       const KEY = "bien-banco-v1";
@@ -272,7 +265,7 @@
         if (!hits.length) {
           const p = document.createElement("p");
           p.className = "empty";
-          p.textContent = "Ninguna foto está etiquetada con esa frase. Prueba «bosque después de la lluvia».";
+          p.textContent = "Ninguna foto está etiquetada con esa frase. Prueba «beerus».";
           grid.append(p);
           return;
         }
