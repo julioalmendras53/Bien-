@@ -260,7 +260,7 @@
         });
         cuenta.innerHTML = searching
           ? `${hits.length === 1 ? "1 foto" : hits.length + " fotos"} para <em>«${esc(q.trim())}»</em>`
-          : `${photos.length} fotos etiquetadas`;
+          : `${photos.length === 1 ? "1 foto etiquetada" : photos.length + " fotos etiquetadas"}`;
         grid.innerHTML = "";
         if (!hits.length) {
           const p = document.createElement("p");
