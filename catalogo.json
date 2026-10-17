@@ -49,5 +49,27 @@
     "place": "Dragon Ball Daima",
     "year": 2024,
     "category": "daima"
+  },
+  {
+    "id": "goku-tamagami-3",
+    "file": "daima/goku-tamagami-3.jpg",
+    "title": "Goku frente al Tamagami número 3",
+    "caption": "Goku se prepara o adopta su pose de pelea ante el tamagami numero 3 en el 3er mundo demoníaco.",
+    "phrases": [
+      "Goku se prepara o adopta su pose de pelea ante el tamagami numero 3 en el 3er mundo demoníaco.",
+      "Goku frente al Tamagami número 3",
+      "Goku adopta su pose de pelea",
+      "Goku contra Tamagami 3 en el tercer mundo demoníaco"
+    ],
+    "tags": [
+      "Goku",
+      "Tamagami número 3",
+      "pose de pelea",
+      "tercer mundo demoníaco",
+      "Dragon Ball Daima"
+    ],
+    "place": "Tercer Mundo Demoníaco · Dragon Ball Daima",
+    "year": 2024,
+    "category": "daima"
   }
 ]
