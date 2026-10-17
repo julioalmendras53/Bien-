@@ -1,5 +1,434 @@
 <!doctype html>
 <html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Bien</title></head>
-<body>bienvenido</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Banco Bien</title>
+    <meta name="description" content="Banco de fotos etiquetadas. Busca una frase y aparece la imagen." />
+    <meta name="theme-color" content="#f3efe7" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f3efe7;
+        --paper-2: #e7e1d6;
+        --ink: #1c1a17;
+        --muted: #6d675f;
+        --line: #d9d2c6;
+        --pine: #234640;
+        --pine-soft: #e4eeeb;
+        --card: #faf8f4;
+        --radius: 1.5rem;
+        --control: 0.75rem;
+        color-scheme: light;
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-font-smoothing: antialiased; }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Outfit, system-ui, sans-serif;
+        line-height: 1.5;
+      }
+      button, [role="button"] { cursor: pointer; }
+      h1, h2 { text-wrap: balance; font-family: Newsreader, Georgia, serif; font-weight: 500; letter-spacing: -0.03em; }
+      .wrap { max-width: 72rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+      .kicker { margin: 0; font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--pine); font-weight: 500; }
+      h1 { font-size: clamp(2.6rem, 6vw, 3.75rem); line-height: 0.95; margin: 0.75rem 0 0; }
+      .lede { max-width: 36rem; color: var(--muted); margin: 1rem 0 0; }
+      .search { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem; }
+      @media (min-width: 640px) { .search { flex-direction: row; } .wrap { padding: 3rem 1.5rem 4rem; } }
+      input[type="search"], input[type="text"], textarea {
+        width: 100%;
+        min-height: 3rem;
+        border: 1px solid var(--line);
+        background: var(--card);
+        color: var(--ink);
+        border-radius: var(--control);
+        padding: 0.7rem 1rem;
+        font: inherit;
+      }
+      textarea { min-height: 5.5rem; }
+      input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 2px solid var(--pine); outline-offset: 2px; }
+      button {
+        min-height: 3rem;
+        border-radius: var(--control);
+        border: 1px solid var(--line);
+        background: var(--card);
+        color: var(--ink);
+        font: inherit;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 0 1.1rem;
+      }
+      button.primary { background: var(--pine); color: var(--card); border-color: var(--pine); }
+      .chips { display: flex; gap: 0.5rem; overflow-x: auto; margin-top: 1rem; padding-bottom: 0.25rem; }
+      .chips button { border-radius: 999px; white-space: nowrap; }
+      .chips button[aria-pressed="true"] { background: var(--pine); color: var(--card); border-color: var(--pine); }
+      .bar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-top: 2rem; }
+      h2 { font-size: 1.6rem; margin: 0; }
+      h2 em { font-style: italic; }
+      .bar a { color: var(--muted); font-size: 0.9rem; }
+      .grid { list-style: none; padding: 0; margin: 1.25rem 0 0; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+      @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; } }
+      @media (min-width: 1024px) { .grid { grid-template-columns: 1fr 1fr 1fr; } }
+      .card {
+        width: 100%;
+        padding: 0;
+        overflow: hidden;
+        border-radius: var(--radius);
+        text-align: left;
+        background: var(--card);
+      }
+      .card img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+      .card span { display: block; }
+      .meta { padding: 0.85rem 1rem 1rem; }
+      .phrase { font-family: Newsreader, Georgia, serif; font-style: italic; font-size: 1.15rem; margin-top: 0.2rem; }
+      .sub { color: var(--muted); font-size: 0.875rem; margin-top: 0.45rem; font-weight: 400; }
+      .empty { color: var(--muted); max-width: 32rem; }
+      dialog {
+        width: min(960px, calc(100vw - 1.5rem));
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 0;
+        background: var(--card);
+        color: var(--ink);
+      }
+      dialog::backdrop { background: rgba(28, 26, 23, 0.4); }
+      dialog form, .sheet { padding: 1.25rem; }
+      .ficha { display: grid; }
+      @media (min-width: 768px) { .ficha { grid-template-columns: 1.35fr 1fr; } .ficha img { height: 100%; object-fit: cover; } }
+      .ficha img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+      .row { display: flex; justify-content: space-between; gap: 0.75rem; align-items: flex-start; }
+      .close { min-height: 2.75rem; }
+      dl { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 1rem 0; }
+      dt { color: var(--muted); font-size: 0.875rem; }
+      dd { margin: 0; font-weight: 500; }
+      .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0.5rem 0 0; list-style: none; }
+      label { display: grid; gap: 0.35rem; font-size: 0.9rem; font-weight: 500; margin-bottom: 0.85rem; }
+      .actions { display: flex; justify-content: flex-end; gap: 0.5rem; }
+      .error { color: var(--ink); font-size: 0.9rem; }
+      @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <p class="kicker">Bien · archivo</p>
+      <h1>Banco de fotos</h1>
+      <p class="lede">Cada imagen ya tiene su frase. Escríbela y aparece la foto, con la ficha que la acompaña.</p>
+      <form class="search" id="busqueda" role="search">
+        <label class="sr" for="frase" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Buscar por frase</label>
+        <input id="frase" type="search" placeholder="atardecer en la playa" autocomplete="off" />
+        <button type="button" id="ver-todo" hidden>Ver todo</button>
+        <button type="button" class="primary" id="abrir-alta">Añadir foto</button>
+      </form>
+      <div class="chips" id="chips"></div>
+      <div class="bar">
+        <h2 id="cuenta">Cargando el archivo…</h2>
+        <a href="https://github.com/julioalmendras53/Bien-">Repositorio</a>
+      </div>
+      <ul class="grid" id="grid"></ul>
+    </main>
+
+    <dialog id="ficha">
+      <div class="ficha" id="ficha-body"></div>
+    </dialog>
+    <dialog id="alta">
+      <form method="dialog" id="form-alta">
+        <h2>Nueva foto</h2>
+        <p class="lede">Etiquétala con las frases que deben encontrarla. Se guarda solo en este navegador.</p>
+        <label>Imagen<input id="alta-file" type="file" accept="image/*" required /></label>
+        <label>Título<input id="alta-titulo" type="text" required /></label>
+        <label>Frases, una por línea<textarea id="alta-frases" required placeholder="atardecer en la playa"></textarea></label>
+        <label>Etiquetas, separadas por coma<input id="alta-tags" type="text" placeholder="mar, arena, sol" /></label>
+        <label>Lugar<input id="alta-lugar" type="text" /></label>
+        <label>Descripción<textarea id="alta-pie"></textarea></label>
+        <p class="error" id="alta-error" hidden></p>
+        <div class="actions">
+          <button type="button" id="alta-cancelar">Cancelar</button>
+          <button class="primary" type="submit">Guardar y buscar</button>
+        </div>
+      </form>
+    </dialog>
+    <script>
+      const SUGERENCIAS = [
+        "gato morado con ojos amarillos",
+        "atardecer en la playa",
+        "café de la mañana",
+        "bosque después de la lluvia",
+        "ciudad de noche",
+        "montaña al amanecer",
+        "mercado de frutas",
+        "libro junto a la ventana",
+        "desierto al atardecer",
+        "flores de primavera",
+        "pan recién horneado",
+      ];
+      const STOP = new Set(["de","la","el","en","al","del","los","las","un","una","y","con","por","para","que","su","sus","lo","a"]);
+      const KEY = "bien-banco-v1";
+      const here = new URL(".", location.href);
+      let archivo = [];
+      let propias = [];
+      let activa = null;
+
+      function esc(value) {
+        return String(value ?? "").replace(/[&<>"']/g, (ch) => {
+          if (ch === "&") return "&" + "amp;";
+          if (ch === "<") return "&" + "lt;";
+          if (ch === ">") return "&" + "gt;";
+          if (ch === '"') return "&" + "quot;";
+          return "&" + "#39;";
+        });
+      }
+      function fold(value) {
+        return value.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+      }
+      function srcOf(foto) {
+        if (foto.file.startsWith("data:") || foto.file.startsWith("http")) return foto.file;
+        return new URL("fotos/" + foto.file, here).href;
+      }
+      function loadOwn() {
+        try {
+          const data = JSON.parse(localStorage.getItem(KEY) || "[]");
+          return Array.isArray(data) ? data.filter((f) => f && f.origin === "tuya" && f.file) : [];
+        } catch { return []; }
+      }
+      function wordHits(word, token) {
+        if (token === word) return true;
+        return word.length >= 4 && token.startsWith(word);
+      }
+      function fieldHits(word, value) {
+        const parts = fold(value).split(" ").filter(Boolean);
+        return parts.some((token) => wordHits(word, token));
+      }
+      function search(photos, query) {
+        const q = fold(query);
+        if (!q) return photos.map((photo) => ({ photo, via: "archivo", matched: photo.phrases[0] || "", score: 1 }));
+        const words = q.split(" ").filter((w) => w.length > 1 && !STOP.has(w));
+        const hits = [];
+        for (const photo of photos) {
+          const phrases = (photo.phrases || []).map((raw) => ({ raw, folded: fold(raw) }));
+          const title = fold(photo.title || "");
+          const caption = fold(photo.caption || "");
+          const tags = (photo.tags || []).map(fold);
+          const place = fold(photo.place || "");
+          let score = 0, matched = "", via = "etiquetas";
+          for (const phrase of phrases) {
+            if (phrase.folded === q) { score += 120; matched = phrase.raw; via = "frase"; }
+            else if (phrase.folded.includes(q) || (q.length > 8 && q.includes(phrase.folded))) {
+              score += 80; if (!matched) matched = phrase.raw; if (via !== "frase") via = "frase";
+            }
+          }
+          if (title.includes(q)) { score += 46; if (via !== "frase") via = "titulo"; }
+          if (caption.includes(q)) { score += 28; if (via !== "frase" && via !== "titulo") via = "pie"; }
+          if (place.includes(q)) score += 18;
+          let matchedWords = 0;
+          for (const word of words) {
+            let hitWord = false;
+            const hit = phrases.find((p) => fieldHits(word, p.folded));
+            if (hit) { score += 10; hitWord = true; if (!matched) matched = hit.raw; }
+            if (tags.some((t) => wordHits(word, t))) { score += 14; hitWord = true; }
+            if (fieldHits(word, title)) { score += 7; hitWord = true; }
+            if (fieldHits(word, caption)) { score += 4; hitWord = true; }
+            if (fieldHits(word, place)) { score += 3; hitWord = true; }
+            if (hitWord) matchedWords += 1;
+          }
+          if (words.length > 1 && matchedWords < words.length) continue;
+          if (words.length > 1 && matchedWords === words.length) score += 24;
+          if (score > 0) hits.push({ photo, score, matched, via });
+        }
+        hits.sort((a, b) => b.score - a.score || a.photo.title.localeCompare(b.photo.title, "es"));
+        return hits;
+      }
+      function viaLabel(via) {
+        return { frase: "Frase etiquetada", titulo: "Título", pie: "Descripción", etiquetas: "Etiquetas" }[via] || "";
+      }
+      const frase = document.getElementById("frase");
+      const grid = document.getElementById("grid");
+      const cuenta = document.getElementById("cuenta");
+      const verTodo = document.getElementById("ver-todo");
+      const chips = document.getElementById("chips");
+      const ficha = document.getElementById("ficha");
+      const alta = document.getElementById("alta");
+
+      function render() {
+        const q = frase.value;
+        const photos = [...propias, ...archivo];
+        const hits = search(photos, q);
+        const searching = q.trim().length > 0;
+        verTodo.hidden = !searching;
+        chips.querySelectorAll("button").forEach((btn) => {
+          btn.setAttribute("aria-pressed", btn.dataset.frase.toLowerCase() === q.trim().toLowerCase() ? "true" : "false");
+        });
+        cuenta.innerHTML = searching
+          ? `${hits.length === 1 ? "1 foto" : hits.length + " fotos"} para <em>«${esc(q.trim())}»</em>`
+          : `${photos.length} fotos etiquetadas`;
+        grid.innerHTML = "";
+        if (!hits.length) {
+          const p = document.createElement("p");
+          p.className = "empty";
+          p.textContent = "Ninguna foto está etiquetada con esa frase. Prueba «bosque después de la lluvia».";
+          grid.append(p);
+          return;
+        }
+        for (const hit of hits) {
+          const li = document.createElement("li");
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "card";
+          const img = document.createElement("img");
+          img.src = srcOf(hit.photo);
+          img.alt = hit.photo.title;
+          const meta = document.createElement("span");
+          meta.className = "meta";
+          const title = document.createElement("span");
+          title.textContent = hit.photo.title;
+          const phrase = document.createElement("span");
+          phrase.className = "phrase";
+          phrase.textContent = hit.matched || (hit.photo.phrases && hit.photo.phrases[0]) || "";
+          const sub = document.createElement("span");
+          sub.className = "sub";
+          const label = searching ? viaLabel(hit.via) : "";
+          sub.textContent = hit.photo.place + (label ? " · " + label : "");
+          meta.append(title, phrase, sub);
+          btn.append(img, meta);
+          btn.addEventListener("click", () => openFicha(hit, searching));
+          li.append(btn);
+          grid.append(li);
+        }
+      }
+      function openFicha(hit, searching) {
+        activa = hit;
+        const body = document.getElementById("ficha-body");
+        body.replaceChildren();
+        const img = document.createElement("img");
+        img.src = srcOf(hit.photo);
+        img.alt = "";
+        const side = document.createElement("div");
+        side.className = "sheet";
+        const row = document.createElement("div");
+        row.className = "row";
+        const h = document.createElement("h2");
+        h.textContent = hit.photo.title;
+        const close = document.createElement("button");
+        close.type = "button";
+        close.className = "close";
+        close.textContent = "Cerrar";
+        close.addEventListener("click", () => ficha.close());
+        row.append(h, close);
+        const pie = document.createElement("p");
+        pie.textContent = hit.photo.caption || "Sin descripción.";
+        const dl = document.createElement("dl");
+        dl.innerHTML = `<div><dt>Lugar</dt><dd>${esc(hit.photo.place || "")}</dd></div><div><dt>Año</dt><dd>${esc(hit.photo.year || "")}</dd></div>`;
+        const label = searching ? viaLabel(hit.via) : "";
+        if (label) {
+          const extra = document.createElement("div");
+          extra.innerHTML = `<dt>Apareció por</dt><dd>${label}</dd>`;
+          extra.style.gridColumn = "1 / -1";
+          dl.append(extra);
+        }
+        const p = document.createElement("p");
+        p.className = "sub";
+        p.textContent = "Frases etiquetadas";
+        const ul = document.createElement("ul");
+        ul.className = "tags";
+        for (const item of hit.photo.phrases || []) {
+          const li = document.createElement("li");
+          const b = document.createElement("button");
+          b.type = "button";
+          b.textContent = item;
+          b.addEventListener("click", () => { frase.value = item; ficha.close(); render(); });
+          li.append(b);
+          ul.append(li);
+        }
+        side.append(row, pie, dl, p, ul);
+        if (hit.photo.tags && hit.photo.tags.length) {
+          const tags = document.createElement("p");
+          tags.className = "sub";
+          tags.textContent = "Etiquetas: " + hit.photo.tags.join(", ");
+          side.append(tags);
+        }
+        if (hit.photo.origin === "tuya") {
+          const rm = document.createElement("button");
+          rm.type = "button";
+          rm.textContent = "Quitar de este navegador";
+          rm.addEventListener("click", () => {
+            propias = propias.filter((f) => f.id !== hit.photo.id);
+            localStorage.setItem(KEY, JSON.stringify(propias));
+            ficha.close();
+            render();
+          });
+          side.append(rm);
+        }
+        body.append(img, side);
+        ficha.showModal();
+      }
+
+      SUGERENCIAS.forEach((item) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.dataset.frase = item;
+        b.textContent = item;
+        b.addEventListener("click", () => { frase.value = item; render(); });
+        chips.append(b);
+      });
+      frase.addEventListener("input", render);
+      verTodo.addEventListener("click", () => { frase.value = ""; render(); });
+      document.getElementById("busqueda").addEventListener("submit", (e) => e.preventDefault());
+      document.getElementById("abrir-alta").addEventListener("click", () => { document.getElementById("alta-error").hidden = true; alta.showModal(); });
+      document.getElementById("alta-cancelar").addEventListener("click", () => alta.close());
+      document.getElementById("form-alta").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const error = document.getElementById("alta-error");
+        const file = document.getElementById("alta-file").files[0];
+        const phrases = document.getElementById("alta-frases").value.split("\n").map((s) => s.trim()).filter(Boolean);
+        if (!file || !phrases.length) {
+          error.hidden = false;
+          error.textContent = "Hace falta una imagen y al menos una frase.";
+          return;
+        }
+        const bitmap = await createImageBitmap(file);
+        const scale = Math.min(1, 1400 / Math.max(bitmap.width, bitmap.height));
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+        canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+        canvas.getContext("2d").drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+        bitmap.close();
+        const foto = {
+          id: "tuya-" + Date.now(),
+          file: canvas.toDataURL("image/jpeg", 0.82),
+          title: document.getElementById("alta-titulo").value.trim(),
+          caption: document.getElementById("alta-pie").value.trim(),
+          phrases,
+          tags: document.getElementById("alta-tags").value.split(",").map((s) => s.trim()).filter(Boolean),
+          place: document.getElementById("alta-lugar").value.trim() || "Sin lugar",
+          year: new Date().getFullYear(),
+          origin: "tuya",
+        };
+        propias = [foto, ...propias];
+        try { localStorage.setItem(KEY, JSON.stringify(propias)); }
+        catch {
+          error.hidden = false;
+          error.textContent = "No cabe en este navegador.";
+          propias.shift();
+          return;
+        }
+        alta.close();
+        event.target.reset();
+        frase.value = phrases[0];
+        render();
+      });
+
+      propias = loadOwn();
+      fetch(new URL("catalogo.json", here))
+        .then((res) => { if (!res.ok) throw new Error("catalogo"); return res.json(); })
+        .then((data) => { archivo = data.map((foto) => ({ ...foto, origin: "archivo" })); render(); })
+        .catch(() => { cuenta.textContent = "No se pudo abrir el catálogo."; });
+    </script>
+  </body>
 </html>
