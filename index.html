@@ -67,6 +67,9 @@
         padding: 0 1.1rem;
       }
       button.primary { background: var(--pine); color: var(--card); border-color: var(--pine); }
+      .categories { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.25rem; }
+      .categories button { border-radius: 999px; }
+      .categories button[aria-pressed="true"] { background: var(--pine); color: var(--card); border-color: var(--pine); }
       .chips { display: flex; gap: 0.5rem; overflow-x: auto; margin-top: 1rem; padding-bottom: 0.25rem; }
       .chips button { border-radius: 999px; white-space: nowrap; }
       .chips button[aria-pressed="true"] { background: var(--pine); color: var(--card); border-color: var(--pine); }
@@ -127,6 +130,7 @@
         <button type="button" id="ver-todo" hidden>Ver todo</button>
         
       </form>
+      <nav class="categories" id="categories" aria-label="Filtrar por serie"></nav>
       <div class="chips" id="chips"></div>
       <div class="bar">
         <h2 id="cuenta">Cargando el archivo…</h2>
@@ -149,6 +153,8 @@
 
       const here = new URL(".", location.href);
       let archivo = [];
+      let category = "todas";
+      const CATEGORIES = [["todas","Todas"],["clasico","Clásico"],["z","Z"],["super","Super"],["daima","Daima"],["super-beerus-enhanced","Super Beerus Enhanced"]];
 
       let activa = null;
 
@@ -223,12 +229,13 @@
       const cuenta = document.getElementById("cuenta");
       const verTodo = document.getElementById("ver-todo");
       const chips = document.getElementById("chips");
+      const categories = document.getElementById("categories");
       const ficha = document.getElementById("ficha");
 
 
       function render() {
         const q = frase.value;
-        const photos = archivo;
+        const photos = category === "todas" ? archivo : archivo.filter(photo => photo.category === category);
         const hits = search(photos, q);
         const searching = q.trim().length > 0;
         verTodo.hidden = !searching;
@@ -327,6 +334,18 @@
         ficha.showModal();
       }
 
+      CATEGORIES.forEach(([id, name]) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = name;
+        b.setAttribute("aria-pressed", String(id === category));
+        b.addEventListener("click", () => {
+          category = id;
+          categories.querySelectorAll("button").forEach(btn => btn.setAttribute("aria-pressed", String(btn === b)));
+          render();
+        });
+        categories.append(b);
+      });
       SUGERENCIAS.forEach((item) => {
         const b = document.createElement("button");
         b.type = "button";
