@@ -166,5 +166,26 @@
     ],
     "place": "Campo de cultivo",
     "category": "super-beerus-enhanced"
+  },
+  {
+    "id": "goku-come-en-lo-arado",
+    "file": "super/goku-come-en-lo-arado.jpg",
+    "title": "Goku come en lo arado",
+    "caption": "goku come su comida en lo arado a distinción del enhanced",
+    "phrases": [
+      "goku come su comida en lo arado a distinción del enhanced",
+      "Goku come su comida en lo arado",
+      "Goku come en el campo arado",
+      "comida en lo arado a distinción del enhanced"
+    ],
+    "tags": [
+      "Goku",
+      "comida",
+      "arado",
+      "campo",
+      "Super"
+    ],
+    "place": "Campo de cultivo · Dragon Ball Super",
+    "category": "super"
   }
 ]
