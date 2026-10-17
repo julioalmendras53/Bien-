@@ -121,5 +121,27 @@
     ],
     "place": "Dragon Ball Super",
     "category": "super-beerus-enhanced"
+  },
+  {
+    "id": "goku-entrenamiento-mental",
+    "file": "super-beerus-enhanced/goku-entrenamiento-mental.webp",
+    "title": "Goku en entrenamiento mental",
+    "caption": "goku se concentran en un entrenamiento mental con los villanos de z",
+    "phrases": [
+      "goku se concentran en un entrenamiento mental con los villanos de z",
+      "Goku se concentra en un entrenamiento mental",
+      "Goku entrenamiento mental con los villanos de Z",
+      "entrenamiento mental con los villanos de Z"
+    ],
+    "tags": [
+      "Goku",
+      "Super Saiyan",
+      "entrenamiento mental",
+      "villanos",
+      "Z",
+      "concentración"
+    ],
+    "place": "Dragon Ball Z",
+    "category": "super-beerus-enhanced"
   }
 ]
