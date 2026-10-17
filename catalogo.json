@@ -2,111 +2,11 @@
   {
     "id": "gato-morado",
     "file": "gato-morado.png",
-    "title": "Mirada dorada",
-    "caption": "Primer plano de un felino morado, con los ojos amarillos y una luz cálida al lado.",
-    "phrases": ["gato morado con ojos amarillos", "felino de anime", "mirada de un gato morado"],
-    "tags": ["gato", "morado", "ojos", "amarillos", "anime", "felino", "mirada"],
-    "place": "Archivo",
+    "title": "Beerus",
+    "caption": "Primer plano de Beerus, el felino morado de ojos amarillos.",
+    "phrases": ["beerus", "dragon ball", "dios de la destrucción", "gato morado con ojos amarillos"],
+    "tags": ["beerus", "dragon ball", "gato", "morado", "ojos", "amarillos", "anime"],
+    "place": "Dragon Ball",
     "year": 2026
-  },
-  {
-    "id": "playa",
-    "file": "playa.jpg",
-    "title": "Orilla en calma",
-    "caption": "La marea baja deja el sol tendido sobre la arena mojada. Última luz, sin gente.",
-    "phrases": ["atardecer en la playa", "puesta de sol en el mar", "arena mojada al atardecer"],
-    "tags": ["playa", "atardecer", "mar", "arena", "sol", "costa", "horizonte"],
-    "place": "Costa",
-    "year": 2024
-  },
-  {
-    "id": "cafe",
-    "file": "cafe.jpg",
-    "title": "Taza junto a la ventana",
-    "caption": "Vapor sobre una taza de cerámica, mesa de madera y la luz primera de la mañana.",
-    "phrases": ["café de la mañana", "taza de café junto a la ventana", "desayuno con café"],
-    "tags": ["café", "mañana", "taza", "desayuno", "ventana", "vapor"],
-    "place": "Cocina",
-    "year": 2023
-  },
-  {
-    "id": "bosque",
-    "file": "bosque.jpg",
-    "title": "Sendero después de la lluvia",
-    "caption": "Musgo, helechos y gotas. El bosque todavía huele a agua.",
-    "phrases": ["bosque después de la lluvia", "sendero mojado en el bosque", "lluvia en el bosque"],
-    "tags": ["bosque", "lluvia", "musgo", "sendero", "niebla", "helechos", "verde"],
-    "place": "Bosque templado",
-    "year": 2022
-  },
-  {
-    "id": "ciudad",
-    "file": "ciudad.jpg",
-    "title": "Calle mojada",
-    "caption": "Faroles y asfalto brillante. La ciudad de noche, recién llovida.",
-    "phrases": ["ciudad de noche", "calle mojada de noche", "lluvia en la ciudad"],
-    "tags": ["ciudad", "noche", "lluvia", "luces", "calle", "asfalto"],
-    "place": "Centro",
-    "year": 2024
-  },
-  {
-    "id": "montana",
-    "file": "montana.jpg",
-    "title": "Cumbres al alba",
-    "caption": "La nieve toma un rosa pálido antes de que el día se asiente.",
-    "phrases": ["montaña al amanecer", "cumbres nevadas al alba", "nieve al amanecer"],
-    "tags": ["montaña", "nieve", "amanecer", "cumbre", "alba", "frío"],
-    "place": "Cordillera",
-    "year": 2021
-  },
-  {
-    "id": "mercado",
-    "file": "mercado.jpg",
-    "title": "Puesto de fruta",
-    "caption": "Cajones de naranjas, higos y tomates a la luz del día.",
-    "phrases": ["mercado de frutas", "puesto de naranjas", "fruta en el mercado"],
-    "tags": ["mercado", "fruta", "naranjas", "higos", "tomates", "puesto"],
-    "place": "Mercado",
-    "year": 2023
-  },
-  {
-    "id": "libro",
-    "file": "libro.jpg",
-    "title": "Página abierta",
-    "caption": "Un libro sobre lino, junto a la ventana, con una flor seca de marca.",
-    "phrases": ["libro junto a la ventana", "libro abierto a la luz", "lectura de la tarde"],
-    "tags": ["libro", "lectura", "ventana", "tarde", "páginas", "quietud"],
-    "place": "Interior",
-    "year": 2024
-  },
-  {
-    "id": "desierto",
-    "file": "desierto.jpg",
-    "title": "Dunas en silencio",
-    "caption": "Sombras largas sobre la arena. El desierto al final del día.",
-    "phrases": ["desierto al atardecer", "dunas al atardecer", "arena del desierto"],
-    "tags": ["desierto", "dunas", "atardecer", "arena", "sombras"],
-    "place": "Desierto",
-    "year": 2020
-  },
-  {
-    "id": "flores",
-    "file": "flores.jpg",
-    "title": "Pradera en primavera",
-    "caption": "Amapolas y margaritas entre el pasto, con el día todavía suave.",
-    "phrases": ["flores de primavera", "campo de amapolas", "pradera en primavera"],
-    "tags": ["flores", "primavera", "amapolas", "margaritas", "campo", "pradera"],
-    "place": "Campo",
-    "year": 2025
-  },
-  {
-    "id": "pan",
-    "file": "pan.jpg",
-    "title": "Hogaza abierta",
-    "caption": "Pan recién partido sobre la mesa, harina y luz de lado.",
-    "phrases": ["pan recién horneado", "pan casero en la mesa", "hogaza de pan"],
-    "tags": ["pan", "horno", "cocina", "mesa", "harina", "comida"],
-    "place": "Cocina",
-    "year": 2024
   }
 ]
