@@ -71,5 +71,26 @@
     "place": "Tercer Mundo Demoníaco · Dragon Ball Daima",
     "year": 2024,
     "category": "daima"
+  },
+  {
+    "id": "moginiano-ataca-bills",
+    "file": "super/moginiano-ataca-bills.webp",
+    "title": "El moginiano ataca a Bills",
+    "caption": "El moginiano ataca a Bills.",
+    "phrases": [
+      "El moginiano ataca a Bills",
+      "Moginiano atacando a Bills",
+      "Bills frente al moginiano",
+      "Moginiano contra Beerus"
+    ],
+    "tags": [
+      "moginiano",
+      "Bills",
+      "Beerus",
+      "ataque",
+      "Dragon Ball Super"
+    ],
+    "place": "Dragon Ball Super",
+    "category": "super"
   }
 ]
