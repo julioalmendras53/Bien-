@@ -143,5 +143,28 @@
     ],
     "place": "Dragon Ball Z",
     "category": "super-beerus-enhanced"
+  },
+  {
+    "id": "goku-comida-goten-tractor",
+    "file": "super-beerus-enhanced/goku-comida-goten-tractor.png",
+    "title": "Goku toma la comida",
+    "caption": "goku toma la comida que le trajo goten mientras goten conduce el tractor en adaptaciones anteriores goku ponia su comida en lo arado",
+    "phrases": [
+      "goku toma la comida que le trajo goten mientras goten conduce el tractor en adaptaciones anteriores goku ponia su comida en lo arado",
+      "Goku toma la comida que le trajo Goten",
+      "Goten conduce el tractor",
+      "Goku ponía su comida en lo arado",
+      "comida en el campo arado"
+    ],
+    "tags": [
+      "Goku",
+      "Goten",
+      "comida",
+      "tractor",
+      "arado",
+      "granja"
+    ],
+    "place": "Campo de cultivo",
+    "category": "super-beerus-enhanced"
   }
 ]
