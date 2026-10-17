@@ -99,5 +99,27 @@
     ],
     "place": "Dragon Ball Super",
     "category": "super"
+  },
+  {
+    "id": "bills-ataca-con-un-dedo",
+    "file": "super-beerus-enhanced/bills-ataca-con-un-dedo.webp",
+    "title": "Bills ataca con un dedo",
+    "caption": "Bills se pone serio ante la presencia del moginiano y ataca mas seguro con un dedo",
+    "phrases": [
+      "Bills se pone serio ante la presencia del moginiano y ataca mas seguro con un dedo",
+      "Bills ataca con un dedo",
+      "Beerus señala al moginiano",
+      "Bills frente al moginiano"
+    ],
+    "tags": [
+      "Bills",
+      "Beerus",
+      "moginiano",
+      "dedo",
+      "ataque",
+      "Dragon Ball Super"
+    ],
+    "place": "Dragon Ball Super",
+    "category": "super-beerus-enhanced"
   }
 ]
