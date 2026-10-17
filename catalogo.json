@@ -4,9 +4,43 @@
     "file": "gato-morado.png",
     "title": "Beerus",
     "caption": "Primer plano de Beerus, el felino morado de ojos amarillos.",
-    "phrases": ["beerus", "dragon ball", "dios de la destrucción", "gato morado con ojos amarillos"],
-    "tags": ["beerus", "dragon ball", "gato", "morado", "ojos", "amarillos", "anime"],
+    "phrases": [
+      "beerus",
+      "dragon ball",
+      "dios de la destrucción",
+      "gato morado con ojos amarillos"
+    ],
+    "tags": [
+      "beerus",
+      "dragon ball",
+      "gato",
+      "morado",
+      "ojos",
+      "amarillos",
+      "anime"
+    ],
     "place": "Dragon Ball",
     "year": 2026
+  },
+  {
+    "id": "goku-alegre",
+    "file": "goku-alegre.png",
+    "title": "Goku alegre",
+    "caption": "Goku está alegre al saber que podrá luchar para conseguir las Esferas del Dragón y volver a la normalidad, después de que él y sus compañeros fueran convertidos en niños.",
+    "phrases": [
+      "Goku alegre",
+      "Goku convertido en niño",
+      "Goku feliz por conseguir las Esferas del Dragón",
+      "Goku en Dragon Ball Daima"
+    ],
+    "tags": [
+      "Goku",
+      "alegría",
+      "niño",
+      "Esferas del Dragón",
+      "Daima"
+    ],
+    "place": "Dragon Ball Daima",
+    "year": 2024
   }
 ]
